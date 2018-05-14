@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="360dp"
+        android:layout_height="424dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/editText_titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Titulo" />
+
+        <TextView
+            android:id="@+id/textView_inico_tp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Inicio" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editText_inicio_fecha_tp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="none"
+                android:singleLine="false" />
+
+            <EditText
+                android:id="@+id/editText_hora_inicio_tp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="none"
+                android:singleLine="false" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView_fin_tp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fin" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editText_fehca_fin_tp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:singleLine="false" />
+
+            <EditText
+                android:id="@+id/editText_hora_fin_tp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:singleLine="false" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <Switch
+                android:id="@+id/switch_periodica_tp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="Repetición"
+                tools:checked="true" />
+
+            <Spinner
+                android:id="@+id/spinner_tp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView_notas_tp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Notas" />
+
+        <EditText
+            android:id="@+id/editText_nota"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textMultiLine" />
+
+        <TextView
+            android:id="@+id/textView_proyectos_tp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Asignar proyecto" />
+
+        <Spinner
+            android:id="@+id/spinner_proyectos_tp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="368dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:layout_editor_absoluteX="9dp">
+
+        <Button
+            android:id="@+id/button_cancelar"
+            android:layout_width="161dp"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            android:text="Cancelar"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="445dp" />
+
+        <Button
+            android:id="@+id/button_guardar"
+            android:layout_width="161dp"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            android:text="Guardar"
+            tools:layout_editor_absoluteX="207dp"
+            tools:layout_editor_absoluteY="443dp" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

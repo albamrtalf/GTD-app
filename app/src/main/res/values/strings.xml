@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Applicación GTD</string>
+
+    <string name="add_t_programada">Tarea programada</string>
+    <string name="add_t_no_programada">Tarea no programada</string>
+    <string name="add_t_delegada">Tarea delegada</string>
+
+    <string name="ver_tarea">Visualizacion de la tarea</string>
+
+    <string name="t_programada2">Tarea programada</string>
+    <string name="t_no_programada">Tarea no programada</string>
+    <string name="t_delegada">Tarea delegada</string>
+    <string name="t_algun_dia">Algún día</string>
+
+    <string name="menu_editar">Editar tarea</string>
+    <string name="menu_eliminar">Eliminar tarea</string>
+    <!--string name="menu_borrar_todas">Borrar nota</string-->
+    <string name="menu_salir">Salir</string>
+</resources>
