@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 getTitle = (String) lista.getItemAtPosition(position);
-                alert("list");
+                actividad("see");
             }
         });
         showTasks();
@@ -175,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void alert (String f) {
+    /**private void alert (String f) {
         AlertDialog alerta;
         alerta = new AlertDialog.Builder(this).create();
 
@@ -235,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         alerta.show();
-    }
+    }**/
 
     private void delete(String f) {
         DB = new AdaptadorBD(this);

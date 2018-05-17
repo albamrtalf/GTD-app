@@ -25,8 +25,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Titulo" />
+            android:gravity="center"
+            android:hint="Titulo de la tarea"
+            android:inputType="textPersonName" />
 
         <TextView
             android:id="@+id/textView_inico_tp"
@@ -37,6 +38,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <EditText
@@ -45,6 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:gravity="center"
                 android:inputType="none"
                 android:singleLine="false" />
 
@@ -54,6 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:gravity="center"
                 android:inputType="none"
                 android:singleLine="false" />
         </LinearLayout>
@@ -67,6 +71,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <EditText
@@ -74,6 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:singleLine="false" />
@@ -84,6 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:gravity="center"
                 android:inputType="textPersonName"
                 android:singleLine="false" />
         </LinearLayout>
@@ -93,19 +100,19 @@
             android:layout_height="50dp"
             android:orientation="horizontal">
 
-            <Switch
-                android:id="@+id/switch_periodica_tp"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/textView_repeticion"
+                android:layout_width="197dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checked="true"
-                android:text="Repetición"
-                tools:checked="true" />
+                android:gravity="center"
+                android:text="Repetición" />
 
             <Spinner
                 android:id="@+id/spinner_tp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:layout_weight="1" />
         </LinearLayout>
 
@@ -131,7 +138,8 @@
         <Spinner
             android:id="@+id/spinner_proyectos_tp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:gravity="center"/>
 
     </LinearLayout>
 
@@ -142,7 +150,8 @@
         android:layout_marginTop="8dp"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        tools:layout_editor_absoluteX="9dp">
+        tools:layout_editor_absoluteX="9dp"
+        tools:ignore="MissingConstraints">
 
         <Button
             android:id="@+id/button_cancelar"

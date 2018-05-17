@@ -1,12 +1,16 @@
 package com.app.alba.gtd_app;
 
+import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
+import android.text.format.Time;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
@@ -22,7 +26,12 @@ import android.widget.Switch;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * Create by Alba
@@ -32,12 +41,12 @@ public class AgregarTareaProgramada extends AppCompatActivity implements View.On
     Button Add, Canc;
     Switch Perd;
     EditText TITLE, DATE_I, TIME_I, DATE_F, TIME_F, CONTENT;
-    Spinner PERIODICIDAD;
+    //Spinner PERIODICIDAD;
     String type, getTitle;
 
     private static final int SALIR = Menu.FIRST;
     private static int dia, mes, agno, hora, minutos;
-    private final static String[] record = { "Cada día", "Cada 2 días", "Cada 5 días", "Cada 10 días", "Cada 15 días"};
+    private final static String[] record = { "Núnca", "Diario", "Semanal", "Mensual", "Anual", "Personalizar"};
 
     AdaptadorBD DB;
 
@@ -46,11 +55,11 @@ public class AgregarTareaProgramada extends AppCompatActivity implements View.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_t_programada);
 
-        ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, record);
+        //ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, record);
 
         Add = (Button)findViewById(R.id.button_guardar);
         Canc = (Button)findViewById(R.id.button_cancelar);
-        Perd = (Switch)findViewById(R.id.switch_periodica_tp);
+       // Perd = (Switch)findViewById(R.id.switch_periodica_tp);
 
         TITLE = (EditText)findViewById(R.id.editText_titulo);
         DATE_I = (EditText)findViewById(R.id.editText_inicio_fecha_tp);
@@ -59,7 +68,7 @@ public class AgregarTareaProgramada extends AppCompatActivity implements View.On
         TIME_F = (EditText)findViewById(R.id.editText_hora_fin_tp);
         CONTENT = (EditText)findViewById(R.id.editText_nota);
 
-        PERIODICIDAD = (Spinner)findViewById(R.id.spinner_tp);
+        //PERIODICIDAD = (Spinner)findViewById(R.id.spinner_tp);
 
         DATE_I.setInputType(InputType.TYPE_NULL);
         DATE_I.setOnClickListener(this);
@@ -71,8 +80,7 @@ public class AgregarTareaProgramada extends AppCompatActivity implements View.On
         TIME_F.setOnClickListener(this);
        // Canc.setOnClickListener(this);
 
-        PERIODICIDAD.setAdapter(adapter);
-
+        //PERIODICIDAD.setAdapter(adapter);
 
         Bundle bundle = this.getIntent().getExtras();
 
@@ -117,7 +125,7 @@ public class AgregarTareaProgramada extends AppCompatActivity implements View.On
                 startActivity(intent);
             }
         });
-        Perd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+       /* Perd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
@@ -126,43 +134,27 @@ public class AgregarTareaProgramada extends AppCompatActivity implements View.On
                     PERIODICIDAD.setEnabled(false);
                 }
             }
-        });
+        });*/
     }
 
+    @TargetApi(Build.VERSION_CODES.O)
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onClick(View v) {
-        if (v == DATE_I) {
-            final Calendar c = Calendar.getInstance();
-            dia = c.get(Calendar.DAY_OF_MONTH);
-            mes = c.get(Calendar.MONTH);
-            agno = c.get(Calendar.YEAR);
+        Calendar c = Calendar.getInstance(Locale.getDefault());
+        dia = c.get(Calendar.DAY_OF_MONTH);
+        mes = c.get(Calendar.MONTH);
+        agno = c.get(Calendar.YEAR);
+        hora = c.get(Calendar.HOUR_OF_DAY);
+        minutos = c.get(Calendar.MINUTE);
 
+        if (v == DATE_I) {
             DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                     DATE_I.setText(dayOfMonth + "/" + month + "/" + year);
                 }
             }, dia, mes, agno);
-            datePickerDialog.show();
-        }
-        if (v == DATE_F) {
-            final Calendar c = Calendar.getInstance();
-            dia = c.get(Calendar.DAY_OF_MONTH);
-            mes = c.get(Calendar.MONTH);
-            agno = c.get(Calendar.YEAR);
-
-            DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                    DATE_F.setText(dayOfMonth + "/" + month + "/" + year);
-                }
-            }, dia, mes, agno);
-            datePickerDialog.show();
-        }
-        if (v == TIME_I) {
-            final Calendar c = Calendar.getInstance();
-            hora = c.get(Calendar.HOUR_OF_DAY);
-            minutos = c.get(Calendar.MINUTE);
 
             TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
                 @Override
@@ -170,12 +162,17 @@ public class AgregarTareaProgramada extends AppCompatActivity implements View.On
                     TIME_I.setText(hourOfDay + ":" + minute);
                 }
             }, hora, minutos, false);
+
             timePickerDialog.show();
+            datePickerDialog.show();
         }
-        if (v == TIME_F) {
-            final Calendar c = Calendar.getInstance();
-            hora = c.get(Calendar.HOUR_OF_DAY);
-            minutos = c.get(Calendar.MINUTE);
+        if (v == DATE_F) {
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                    DATE_F.setText(dayOfMonth + "/" + month + "/" + year);
+                }
+            }, dia, mes, agno);
 
             TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
                 @Override
@@ -183,7 +180,9 @@ public class AgregarTareaProgramada extends AppCompatActivity implements View.On
                     TIME_F.setText(hourOfDay + ":" + minute);
                 }
             }, hora, minutos, false);
+
             timePickerDialog.show();
+            datePickerDialog.show();
         }
     }
 
