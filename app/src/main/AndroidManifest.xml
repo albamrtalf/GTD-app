@@ -23,21 +23,7 @@
             <category android:name="android.intent.category.DEFAULT" />
         </intent-filter>
     </activity>
-    <activity android:name=".AgregarNoTareaProgramada" android:label="@string/add_t_no_programada">
-        <intent-filter>
-            <action android:name="android.intent.action.AgregarNoTareaProgramada" />
-
-            <category android:name="android.intent.category.DEFAULT" />
-        </intent-filter>
-    </activity>
-    <activity android:name=".AgregarTareaDelegada" android:label="@string/add_t_delegada">
-        <intent-filter>
-            <action android:name="android.intent.action.AgregarTareaDelegada" />
-
-            <category android:name="android.intent.category.DEFAULT" />
-        </intent-filter>
-    </activity>
-    <activity android:name=".VerTarea" android:label="@string/ver_tarea">
+        <activity android:name=".VerTarea" android:label="@string/ver_tarea">
         <intent-filter>
             <action android:name="android.intent.action.VerTarea" />
 

@@ -39,18 +39,16 @@ public class MainActivity extends AppCompatActivity {
 
         //textLista = (TextView) findViewById(R.id.textView_Lista);
         lista = (ListView) findViewById(R.id.ListView_ListaNotas);
-
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                getTitle = (String) lista.getItemAtPosition(position); // Titulo de la tarea del Item
+                getTitle = (String) lista.getItemAtPosition(position);
                 alert("list");
             }
         });
-
-        //showTasks();
+        showTasks();
     }
-    
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -91,24 +89,23 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void  showTasks() {
+    private void showTasks () {
         DB = new AdaptadorBD(this);
         Cursor c = DB.getTasks();
         item = new ArrayList<String>();
-        String tittle = "";
+        String title = "";
 
         if (c.moveToFirst() == false) {
-            textLista.setText("No hay tareas");
+
         } else {
             do {
-                tittle = c.getString(1);
-                item.add(tittle);
-            }while (c.moveToNext());
+                title = c.getString(1);
+                item.add(title);
+            } while (c.moveToNext());
         }
-
         ArrayAdapter<String> adapter =
                 new ArrayAdapter<String>(this,
-                        android.R.layout.simple_list_item_1,item);
+                        android.R.layout.simple_list_item_1, item);
         lista.setAdapter(adapter);
     }
 
@@ -128,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void actividad(String act){
-        String type="", content="";
+        String type = "", content = "", date_i = "", time_i = "", date_f = "", time_f = "";
 
         if(act.equals("addtp")) {
             type="add";
@@ -136,38 +133,43 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("type", type);
             startActivity(intent); //Lanzamos la actividad
         } else if(act.equals("addtnp")) {
-            type = "add";
+           /* type = "add";
             Intent intent = new Intent(MainActivity.this, AgregarNoTareaProgramada.class);
             intent.putExtra("type", type);
-            startActivity(intent); //Lanzamos la actividad
+            startActivity(intent); //Lanzamos la actividad*/
         } else if(act.equals("addtd")) {
-            type = "add";
+            /*type = "add";
             Intent intent = new Intent(MainActivity.this, AgregarTareaDelegada.class);
             intent.putExtra("type", type);
-            startActivity(intent); //Lanzamos la actividad
+            startActivity(intent); //Lanzamos la actividad*/
         } else if(act.equals("addtad")) {
             /*type = "add";
             Intent intent = new Intent(MainActivity.this, AgregarTareaProgramada.class);
             intent.putExtra("type", type);
             startActivity(intent); //Lanzamos la actividad*/
-        }
-        else {
+        } else {
             if (act.equals("edit")) {
                 type = "edit";
                 content = getTask();
                 Intent intent = new Intent(MainActivity.this,AgregarTareaProgramada.class);
-                intent.putExtra("type",type);
                 intent.putExtra("title",getTitle);
+                intent.putExtra("date_i",date_i);
+                intent.putExtra("time_i",time_i);
+                intent.putExtra("date_f",date_f);
+                intent.putExtra("time_f",time_f);
                 intent.putExtra("content",content);
                 startActivity(intent);
             } else {
                 if (act.equals("see")) {
                     content = getTask();
                     Intent intent = new Intent(MainActivity.this,VerTarea.class);
-                    intent.putExtra("type",type);
                     intent.putExtra("title",getTitle);
+                    intent.putExtra("date_i",date_i);
+                    intent.putExtra("time_i",time_i);
+                    intent.putExtra("date_f",date_f);
+                    intent.putExtra("time_f",time_f);
                     intent.putExtra("content",content);
-                    startActivity(intent);
+                startActivity(intent);
                 }
             }
         }
